@@ -6,6 +6,9 @@ type Query {
 
     users: [User!]! @all
     user(id: ID @eq): User @find
+    post(id: ID!): Post @find
+    posts: [Post!]! @all
+
 }
 "Account of a person who utilizes this application."
 type User {
@@ -26,7 +29,28 @@ type User {
 
     "When the account was last updated."
     updated_at: DateTime!
+
+    posts: [Post!]! @hasMany
 }
+
+
+"Represents a single post."
+type Post {
+    "Unique primary key."
+    id: ID!
+
+    "Title of the post."
+    title: String!
+
+    "Content of the post."
+    content: String!
+
+    "User who created the post."
+    user: User!
+}
+
+
+
 
 type Mutation {
     createUser(name: String!, email: String!, password: String!): User @create
