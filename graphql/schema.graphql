@@ -31,6 +31,6 @@ type User {
 type Mutation {
     createUser(name: String!, email: String!, password: String!): User @create
     updateUser(id: ID!, name: String, email: String, password: String): User @update
-    deleteUser(id: ID!): User @delete
+    deleteUser(id: ID! @whereKey): User @delete
 }
 
